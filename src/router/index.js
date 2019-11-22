@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Home from '@/components/Home'
+import NewChatroom from '@/components/NewChatroom'
+import ViewChatroom from '@/components/ViewChatroom'
+import EditChatroom from '@/components/EditChatroom'
+
 
 Vue.use(VueRouter)
 
@@ -11,13 +15,20 @@ const routes = [
     component: Home
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    path: '/chatroom/new',
+    name: 'new-chatroom',
+    component: NewChatroom
+  },
+  {
+    path: '/chatroom/:chatroom_id/edit',
+    name: 'edit-chatroom',
+    component: EditChatroom
+  },
+  {
+    path: '/chatroom/:chatroom_id',
+    name: 'view-chatroom',
+    component: ViewChatroom
+  },
 ]
 
 const router = new VueRouter({
