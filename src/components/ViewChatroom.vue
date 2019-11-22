@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="view-chatroom">
-    <h3>Chatroom Name</h3>
+    <h3>{{chatroom.name}}</h3>
 
     <form @submit="deleteChatroom">
       <button class="btn waves-effect waves-light red" type="submit">
@@ -19,13 +19,50 @@ export default {
   name: 'view-chatroom',
   data () {
     return {
-      chatroom_id: this.$route.params.chatroom_id
+      chatroom: ''
     }
   },
+  created() {
+    this.getData();
+  },
+  watch: {
+    // call again the method if the route changes
+    '$route': 'getData'
+  },
   methods: {
+    getData() {
+      let current = this;
+      var chatroom_id = this.$route.params.chatroom_id;
+      db.collection("chatrooms").doc(chatroom_id).get().then(function(doc) {
+          if (doc.exists) {
+              var data = {
+                'id': doc.id,
+                'name': doc.data().name,
+                'about': doc.data().about,
+                'created_by': doc.data().created_by,
+                'timestamp': doc.data().timestamp,
+              }
+
+              current.chatroom = data;
+          } else {
+              Swal.fire(
+                'Chatroom does not exist!',
+                'error'
+              );
+              current.$router.push({ name: 'home' })
+          }
+      }).catch(function(error) {
+          Swal.fire(
+            'Failed to get Chatroom!',
+            error+'. You can try again later.',
+            'error'
+          );
+          current.$router.push({ name: 'home' })
+      });
+    },
     deleteChatroom(e) {
       e.preventDefault();
-      let current = this
+      let current = this;
 
       Swal.fire({
         title: 'Are you sure?',
@@ -38,7 +75,7 @@ export default {
       }).then((result) => {
         if (result.value) {
 
-          db.collection("chatrooms").doc(current.chatroom_id).delete().then(function() {
+          db.collection("chatrooms").doc(current.chatroom.id).delete().then(function() {
             Swal.fire(
               'Deleted!',
               'Your chatroom has been deleted.',
@@ -56,7 +93,7 @@ export default {
         }
       })
     }
-  }
+  },
 }
 </script>
 
