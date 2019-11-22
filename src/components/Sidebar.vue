@@ -40,6 +40,7 @@ export default {
     // fetch chatrooms
     db.collection("chatrooms").orderBy("timestamp", "asc")
       .onSnapshot(querySnapshot => {
+        var chatroomsNew = []
         querySnapshot.forEach(doc => {
           var data = {
             'id': doc.id,
@@ -49,16 +50,21 @@ export default {
             'timestamp': doc.data().timestamp,
           }
 
-          // only store data that does not exist yet
-          var exists = this.chatrooms.some(function(chatroom) {
-            return data.id === chatroom.id
-          });
+          chatroomsNew.push(data);
 
-          if (!exists) {
-            this.chatrooms.push(data)
-          }
+          // // only store data that does not exist yet
+          // var exists = this.chatrooms.some(function(chatroom) {
+          //   return data.id === chatroom.id
+          // });
+          //
+          // if (!exists) {
+          //   this.chatrooms.push(data)
+          // }
 
         })
+
+        // replace with new list
+        this.chatrooms = chatroomsNew;
       }, function(error) {
           console.log(error);
       });
