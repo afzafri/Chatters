@@ -44,6 +44,7 @@ export default {
               'Your chatroom has been deleted.',
               'success'
             )
+            current.$router.push({ name: 'home' })
           }).catch(function(error) {
             Swal.fire(
               'Failed to delete Chatroom!',
