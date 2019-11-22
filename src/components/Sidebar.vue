@@ -6,9 +6,9 @@
           <div class="background">
             <img src="../assets/banner.jpg" width="300px">
           </div>
-          <a href="/">
+          <router-link :to="{ name: 'home' }">
             <h3 class="white-text center-align">Chatters</h3>
-          </a>
+          </router-link>
           <br>
         </div>
       </li>
