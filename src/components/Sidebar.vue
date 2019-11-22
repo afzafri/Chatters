@@ -37,18 +37,31 @@ export default {
     }
   },
   created () {
-    db.collection('chatrooms').orderBy("timestamp", "asc").get().then(querySnapshot => {
-      querySnapshot.forEach(doc => {
-        const data = {
-          'id': doc.id,
-          'name': doc.data().name,
-          'about': doc.data().about,
-          'created_by': doc.data().created_by,
-          'timestamp': doc.data().timestamp,
-        }
-        this.chatrooms.push(data)
-      })
-    })
+    // fetch chatrooms
+    db.collection("chatrooms").orderBy("timestamp", "asc")
+      .onSnapshot(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          var data = {
+            'id': doc.id,
+            'name': doc.data().name,
+            'about': doc.data().about,
+            'created_by': doc.data().created_by,
+            'timestamp': doc.data().timestamp,
+          }
+
+          // only store data that does not exist yet
+          var exists = this.chatrooms.some(function(chatroom) {
+            return data.id === chatroom.id
+          });
+
+          if (!exists) {
+            this.chatrooms.push(data)
+          }
+
+        })
+      }, function(error) {
+          console.log(error);
+      });
   }
 }
 </script>
