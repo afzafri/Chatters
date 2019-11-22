@@ -1,13 +1,28 @@
 <template>
   <div id="app">
+    <header>
+      <nav>
+        <div class="nav-wrapper green">
+          <ul class="hide-on-med-and-down">
+            <li :class="{'active':$route.name === 'new-chatroom'}">
+              <router-link :to="{ name: 'new-chatroom' }">
+                <i class="material-icons left">add</i> New Chatroom
+              </router-link>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
     <Sidebar />
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div> -->
-    <div class="container">
-      <router-view/>
-    </div>
+
+    <main>
+      <div class="container">
+        <router-view/>
+      </div>
+    </main>
+
+    <footer></footer>
   </div>
 </template>
 
@@ -20,3 +35,15 @@
     }
   }
 </script>
+
+<style>
+  header, main, footer {
+    padding-left: 300px;
+  }
+
+  @media only screen and (max-width : 992px) {
+    header, main, footer {
+      padding-left: 0;
+    }
+  }
+</style>
