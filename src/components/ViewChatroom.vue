@@ -165,12 +165,11 @@ export default {
         'timestamp': new Date().getTime(),
       }
 
+      // clear input
+      current.new_message = '';
+      
       // insert to firestore
       db.collection("chatrooms").doc(this.chatroom.id).collection("messages").add(newMessage)
-      .then(function(docRef) {
-        // clear input
-        current.new_message = '';
-      })
       .catch(function(error) {
         Swal.fire(
           'Failed to send message!',
