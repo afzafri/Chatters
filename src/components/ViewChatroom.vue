@@ -20,19 +20,20 @@
            <br>
 
            <div class="message-wrapper messages" v-chat-scroll>
-             <div class="row" v-for="i in 100" :key="i" style="margin-bottom: 0px !important;">
+             <div class="row" v-for="message in messages" :key="message.id" style="margin-bottom: 0px !important;">
 
-               <img class="profile-pic" src="https://ui-avatars.com/api/?name=John+Doe" :class="[i%2 === 0 ? 'left' : 'right']"/>
+               <!-- if message username not equal to current logged in, then bubble on left -->
+               <img class="profile-pic" :src="'https://ui-avatars.com/api/?name='+message.username" :class="[message.username !== username ? 'left' : 'right']"/>
 
-               <div class="chat-bubble" :class="[i%2 === 0 ? 'left' : 'right']">
+               <div class="chat-bubble" :class="[message.username !== username ? 'left' : 'right']">
 
                    <div class="message">
                      Hello
                    </div>
 
                    <div class="message-detail">
-                       <span>User A</span>,
-                       <span>3:03 pm</span>
+                       <span>{{ message.username }}</span>,
+                       <span>{{moment.unix(message.timestamp).format('DD MMM YY, h:mm A')}}</span>
                    </div>
 
                </div>
@@ -70,7 +71,8 @@ export default {
   data () {
     return {
       chatroom: '',
-      username: ''
+      username: '',
+      messages: [],
     }
   },
   created() {
@@ -109,6 +111,9 @@ export default {
               }
 
               current.chatroom = data;
+
+              // get all messages
+              current.getMessages();
           } else {
               Swal.fire(
                 'Chatroom does not exist!',
@@ -124,6 +129,32 @@ export default {
           );
           current.$router.push({ name: 'home' })
       });
+    },
+    getMessages() {
+      db.collection("chatrooms").doc(this.chatroom.id).collection("messages").orderBy("timestamp", "asc")
+        .onSnapshot(querySnapshot => {
+          querySnapshot.forEach(doc => {
+            var data = {
+              'id': doc.id,
+              'message': doc.data().message,
+              'username': doc.data().username,
+              'timestamp': doc.data().timestamp,
+            }
+
+            // only store data that does not exist yet
+            var exists = this.messages.some(function(message) {
+              return data.id === message.id
+            });
+
+            if (!exists) {
+              this.messages.push(data)
+            }
+
+          })
+
+        }, function(error) {
+            console.log(error);
+        });
     },
     deleteChatroom(e) {
       e.preventDefault();
