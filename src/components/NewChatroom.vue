@@ -6,20 +6,20 @@
       <form class="col s12" @submit="createChatroom">
         <div class="row">
           <div class="input-field col s12">
-            <input type="text" class="validate" v-model="name" name="name">
-            <label>Chatroom Name</label>
+            <input type="text" class="validate" v-model="name" name="name" placeholder="Enter Chatroom name">
+            <label class="active">Chatroom Name</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <textarea class="materialize-textarea" v-model="about" name="about"></textarea>
-            <label>Chatroom About</label>
+            <textarea class="materialize-textarea" v-model="about" name="about" placeholder="Tell people what is this chatroom for?"></textarea>
+            <label class="active">Chatroom About</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input type="text" class="validate" v-model="created_by" name="created_by">
-            <label :class="{'active':created_by !== ''}">Created By</label>
+            <input type="text" class="validate" v-model="created_by" name="created_by" placeholder="Enter your name">
+            <label class="active">Created By</label>
           </div>
         </div>
         <div class="row">
