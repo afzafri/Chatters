@@ -136,6 +136,7 @@ export default {
     getMessages() {
       db.collection("chatrooms").doc(this.chatroom.id).collection("messages").orderBy("timestamp", "asc")
         .onSnapshot(querySnapshot => {
+          var messagesNew = []
           querySnapshot.forEach(doc => {
             var data = {
               'id': doc.id,
@@ -144,15 +145,10 @@ export default {
               'timestamp': doc.data().timestamp,
             }
 
-            // only store data that does not exist yet
-            var exists = this.messages.some(function(message) {
-              return data.id === message.id
-            });
+            messagesNew.push(data);
 
-            if (!exists) {
-              this.messages.push(data)
-            }
-
+            // replace with new list
+            this.messages = messagesNew;
           })
 
         }, function(error) {
