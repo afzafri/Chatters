@@ -3,7 +3,17 @@
     <header>
       <nav>
         <div class="nav-wrapper green">
-          <ul class="hide-on-med-and-down">
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+            <li v-if="username" class="dropdown-custom">
+              <a class="dropdown-trigger" href="#!">
+                {{username}}<i class="material-icons right">arrow_drop_down</i>
+              </a>
+              <div class="dropdown-content-custom">
+                <span v-on:click="logOut">Log Out</span>
+              </div>
+            </li>
+            <li v-else><a href="#" v-on:click="logIn">Login</a></li>
 
           </ul>
         </div>
@@ -24,11 +34,69 @@
 
 <script type="text/javascript">
   import Sidebar from '@/components/Sidebar'
+  import Swal from 'sweetalert2'
 
   export default {
     components: {
       Sidebar
-    }
+    },
+    data () {
+      return {
+        username: ''
+      }
+    },
+    methods: {
+      logIn() {
+        Swal.fire({
+            title: 'Login to start chatting!',
+            input: 'text',
+            inputAttributes: {
+              autocapitalize: 'off',
+              placeholder: 'Enter your name'
+            },
+            showCancelButton: true,
+            confirmButtonText: 'Log In',
+            showLoaderOnConfirm: true,
+            allowOutsideClick: false
+          }).then((result) => {
+            if (result.value) {
+              localStorage.username = result.value;
+              this.username = localStorage.username;
+
+              Swal.fire(
+                'Log In Success',
+                'Enter a chatroom to start chatting!',
+                'success'
+              );
+
+              this.$router.push({ name: 'home' });
+            }
+          })
+      },
+      logOut() {
+        let current = this;
+
+        Swal.fire({
+          title: 'Log Out?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#d33',
+          cancelButtonColor: '#3085d6',
+          confirmButtonText: 'Log Out'
+        }).then((result) => {
+          if (result.value) {
+            localStorage.removeItem('username');
+            this.username = "";
+            current.$router.push({ name: 'home' })
+          }
+        })
+      }
+    },
+    mounted() {
+      if (localStorage.username) {
+        this.username = localStorage.username;
+      }
+    },
   }
 </script>
 

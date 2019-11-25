@@ -6,7 +6,7 @@
          <div class="card-content">
            <span class="card-title">
              <b>{{chatroom.name}}</b>
-
+             {{username}}
              <div class="dropdown-custom right">
                  <i class="material-icons">settings</i>
                  <div class="dropdown-content-custom">
@@ -70,7 +70,8 @@ export default {
   name: 'view-chatroom',
   data () {
     return {
-      chatroom: ''
+      chatroom: '',
+      username: ''
     }
   },
   created() {
@@ -78,11 +79,18 @@ export default {
   },
   watch: {
     // call again the method if the route changes
-    '$route': 'getData'
+    '$route': 'getData',
   },
   methods: {
     getData() {
       let current = this;
+
+      // get user name
+      if (localStorage.username) {
+        this.username = localStorage.username;
+      }
+
+      // get chatroom details
       var chatroom_id = this.$route.params.chatroom_id;
       db.collection("chatrooms").doc(chatroom_id).get().then(function(doc) {
           if (doc.exists) {
