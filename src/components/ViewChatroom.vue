@@ -1,6 +1,19 @@
 <template lang="html">
   <div id="view-chatroom">
-    <h3>{{chatroom.name}}</h3>
+    <div class="row">
+     <div class="col s12">
+       <div class="card">
+         <div class="card-content">
+           <span class="card-title">{{chatroom.name}}</span>
+           <p>{{chatroom.about}}</p>
+         </div>
+         <div class="card-action">
+           <a href="#">This is a link</a>
+           <a href="#">This is a link</a>
+         </div>
+       </div>
+     </div>
+   </div>
 
     <form @submit="deleteChatroom">
       <button class="btn waves-effect waves-light red" type="submit">
