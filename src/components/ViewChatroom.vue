@@ -5,7 +5,7 @@
        <div class="card">
          <div class="card-content">
            <span class="card-title">
-             {{chatroom.name}}
+             <b>{{chatroom.name}}</b>
 
              <div class="dropdown-custom right">
                  <i class="material-icons">settings</i>
