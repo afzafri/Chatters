@@ -88,6 +88,13 @@ export default {
       // get user name
       if (localStorage.username) {
         this.username = localStorage.username;
+      } else {
+        Swal.fire(
+          'You need to login to start chatting!',
+          'Click on the Login button on the top right',
+          'error'
+        );
+        current.$router.push({ name: 'home' });
       }
 
       // get chatroom details
