@@ -10,7 +10,7 @@
                  <i class="material-icons" style="cursor: pointer;">settings</i>
                  <div class="dropdown-content-custom">
                    <router-link :to="{ name: 'edit-chatroom' }">Edit <i class="material-icons right">edit</i></router-link>
-                   <span>Clear <i class="material-icons right">clear_all</i></span>
+                   <span v-on:click="clearConversations">Clear <i class="material-icons right">clear_all</i></span>
                    <span class="red-text" v-on:click="deleteChatroom">Delete <i class="material-icons right">delete</i></span>
                  </div>
              </div>
@@ -179,13 +179,55 @@ export default {
         );
       });
     },
+    clearConversations(e) {
+      e.preventDefault();
+      let current = this;
+
+      Swal.fire({
+        title: 'Clear all conversations?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, clear all!'
+      }).then((result) => {
+        if (result.value) {
+
+          db.collection("chatrooms").doc(this.chatroom.id).collection("messages")
+            .onSnapshot(querySnapshot => {
+
+              querySnapshot.forEach(doc => {
+                current.deleteMessage(doc.id);
+              })
+
+              Swal.fire(
+                'Conversations Cleared!',
+                'All conversations has been cleared.',
+                'success'
+              )
+            }, function(error) {
+              Swal.fire(
+                'Failed to clear conversations!',
+                error+'. You can try again later.',
+                'error'
+              );
+            });
+
+        }
+      })
+    },
+    deleteMessage(message_id) {
+      db.collection("chatrooms").doc(this.chatroom.id).collection("messages").doc(message_id).delete();
+      this.messages = [];
+    },
     deleteChatroom(e) {
       e.preventDefault();
       let current = this;
 
       Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title: 'Delete this chatroom?',
+        text: "All conversations will be deleted as well. You won't be able to revert this!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#d33',
