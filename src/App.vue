@@ -28,7 +28,7 @@
       </div>
     </main>
 
-    <footer class="page-footer">
+    <footer class="page-footer transparent">
       <div class="footer-copyright transparent">
         <div class="container">
         <span class="black-text">&copy; 2019 Afif Zafri</span>
