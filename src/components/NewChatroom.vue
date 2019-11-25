@@ -19,7 +19,7 @@
         <div class="row">
           <div class="input-field col s12">
             <input type="text" class="validate" v-model="created_by" name="created_by">
-            <label>Created By</label>
+            <label :class="{'active':created_by !== ''}">Created By</label>
           </div>
         </div>
         <div class="row">
@@ -85,7 +85,12 @@ export default {
         });
 
       }
-    }
+    },
+    mounted() {
+      if (localStorage.username) {
+        this.created_by = localStorage.username;
+      }
+    },
   }
 </script>
 
