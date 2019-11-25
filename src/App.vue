@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="page-flexbox-wrapper">
     <header>
       <nav>
         <div class="nav-wrapper green">
@@ -19,9 +19,8 @@
           </ul>
         </div>
       </nav>
+      <Sidebar />
     </header>
-
-    <Sidebar />
 
     <main>
       <div class="container">
@@ -29,7 +28,14 @@
       </div>
     </main>
 
-    <footer></footer>
+    <footer class="page-footer">
+      <div class="footer-copyright transparent">
+        <div class="container">
+        <span class="black-text">&copy; 2019 Afif Zafri</span>
+        <a class="grey-text right" href="https://github.com/afzafri/Chatters">GitHub Project Page</a>
+        </div>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -111,6 +117,17 @@
       padding-left: 0;
     }
   }
+
+  .page-flexbox-wrapper {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+
 
   /* The container <div> - needed to position the dropdown-custom content */
   .dropdown-custom {
