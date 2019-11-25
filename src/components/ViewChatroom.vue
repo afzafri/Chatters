@@ -28,12 +28,12 @@
                <div class="chat-bubble" :class="[message.username !== username ? 'left' : 'right']">
 
                    <div class="message">
-                     Hello
+                     {{ message.message }}
                    </div>
 
                    <div class="message-detail">
                        <span>{{ message.username }}</span>,
-                       <span>{{moment.unix(message.timestamp).format('DD MMM YY, h:mm A')}}</span>
+                       <span>{{moment(message.timestamp).format('DD MMM YY, h:mm A')}}</span>
                    </div>
 
                </div>
@@ -42,12 +42,14 @@
            </div>
 
            <div class="row" style="margin-bottom: 0px !important;">
-                <form class="col s12">
+                <form class="col s12" @submit="sendMessage">
                     <div class="row" style="margin-bottom: 0px !important;">
                         <div class="input-field input-group col s12">
-                            <input type="text" class="validate" placeholder="Enter your message...">
+                            <input type="text" v-model="new_message" name="new_message" class="validate" placeholder="Enter your message...">
                             <span class="suffix">
-                                <a class="btn waves-effect waves-light btn-floating green"><i class="material-icons">send</i></a>
+                              <button type="submit" name="button" class="btn waves-effect waves-light btn-floating green">
+                                <i class="material-icons">send</i>
+                              </button>
                             </span>
                         </div>
                     </div>
@@ -73,6 +75,7 @@ export default {
       chatroom: '',
       username: '',
       messages: [],
+      new_message: '',
     }
   },
   created() {
@@ -155,6 +158,30 @@ export default {
         }, function(error) {
             console.log(error);
         });
+    },
+    sendMessage(e) {
+      e.preventDefault();
+      let current = this;
+
+      var newMessage = {
+        'message': this.new_message,
+        'username': this.username,
+        'timestamp': new Date().getTime(),
+      }
+
+      // insert to firestore
+      db.collection("chatrooms").doc(this.chatroom.id).collection("messages").add(newMessage)
+      .then(function(docRef) {
+        // clear input
+        current.new_message = '';
+      })
+      .catch(function(error) {
+        Swal.fire(
+          'Failed to send message!',
+          error+'. You can try again later.',
+          'error'
+        );
+      });
     },
     deleteChatroom(e) {
       e.preventDefault();
