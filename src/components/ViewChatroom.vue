@@ -4,7 +4,19 @@
      <div class="col s12">
        <div class="card">
          <div class="card-content">
-           <span class="card-title">{{chatroom.name}}</span>
+           <span class="card-title">
+             {{chatroom.name}}
+
+             <div class="dropdown-custom right">
+                 <i class="material-icons">settings</i>
+                 <div class="dropdown-custom-content-custom">
+                   <router-link :to="{ name: 'edit-chatroom' }">Edit <i class="material-icons right">edit</i></router-link>
+                   <span>Clear <i class="material-icons right">clear_all</i></span>
+                   <span class="red-text" v-on:click="deleteChatroom">Delete <i class="material-icons right">delete</i></span>
+                 </div>
+             </div>
+           </span>
+
            <p>{{chatroom.about}}</p>
          </div>
          <div class="card-action">
@@ -14,12 +26,6 @@
        </div>
      </div>
    </div>
-
-    <form @submit="deleteChatroom">
-      <button class="btn waves-effect waves-light red" type="submit">
-        Delete <i class="material-icons right">delete</i>
-      </button>
-    </form>
 
   </div>
 </template>
