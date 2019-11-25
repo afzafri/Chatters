@@ -184,11 +184,8 @@ export default {
 
   .message-detail {
     white-space: nowrap;
-    font-size: 14px;
-  }
-
-  .bar.item-input-inset .item-input-wrapper input {
-    width: 100% !important;
+    font-size: 12px;
+    font-style: italic;
   }
 
   .message-wrapper {
@@ -240,10 +237,5 @@ export default {
     background-color: #4caf50;
     right: 10px;
     -webkit-transform: rotate(118deg) skew(-5deg);
-  }
-
-  .chat-bubble.right a.autolinker {
-    color: #fff;
-    font-weight: bold;
   }
 </style>
