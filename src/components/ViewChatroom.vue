@@ -9,7 +9,7 @@
 
              <div class="dropdown-custom right">
                  <i class="material-icons">settings</i>
-                 <div class="dropdown-custom-content-custom">
+                 <div class="dropdown-content-custom">
                    <router-link :to="{ name: 'edit-chatroom' }">Edit <i class="material-icons right">edit</i></router-link>
                    <span>Clear <i class="material-icons right">clear_all</i></span>
                    <span class="red-text" v-on:click="deleteChatroom">Delete <i class="material-icons right">delete</i></span>
@@ -17,11 +17,26 @@
              </div>
            </span>
 
-           <p>{{chatroom.about}}</p>
-         </div>
-         <div class="card-action">
-           <a href="#">This is a link</a>
-           <a href="#">This is a link</a>
+           <p><i>{{chatroom.about}}</i></p>
+           <br>
+
+           <ul class="messages" v-chat-scroll>
+             <li v-for="i in 100" :key="i">{{i}}</li>
+           </ul>
+
+           <div class="row" style="margin-bottom: 0px !important;">
+                <form class="col s12">
+                    <div class="row" style="margin-bottom: 0px !important;">
+                        <div class="input-field input-group col s12">
+                            <input type="text" class="validate" placeholder="Enter your message...">
+                            <span class="suffix">
+                                <a class="btn waves-effect waves-light btn-floating"><i class="material-icons">send</i></a>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
          </div>
        </div>
      </div>
@@ -117,4 +132,15 @@ export default {
 </script>
 
 <style lang="css" scoped>
+  .input-group {
+      display: table;
+  }
+
+  .input-group input, .suffix {
+      display: table-cell;
+  }
+
+  .suffix {
+      width:1%;
+  }
 </style>

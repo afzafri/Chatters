@@ -50,7 +50,7 @@
   }
 
   /* dropdown-custom Content (Hidden by Default) */
-  .dropdown-custom-content-custom {
+  .dropdown-content-custom {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
@@ -60,7 +60,7 @@
   }
 
   /* Links inside the dropdown-custom */
-  .dropdown-custom-content-custom a, .dropdown-custom-content-custom span {
+  .dropdown-content-custom a, .dropdown-content-custom span {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
@@ -69,15 +69,16 @@
   }
 
   /* Change color of dropdown-custom links on hover */
-  .dropdown-custom-content-custom a:hover, .dropdown-custom-content-custom span:hover {background-color: #f1f1f1}
+  .dropdown-content-custom a:hover, .dropdown-content-custom span:hover {background-color: #f1f1f1}
 
   /* Show the dropdown-custom menu on hover */
-  .dropdown-custom:hover .dropdown-custom-content-custom {
+  .dropdown-custom:hover .dropdown-content-custom {
     display: block;
   }
 
-  /* Change the background color of the dropdown-custom button when the dropdown-custom content is shown */
-  .dropdown-custom:hover .dropbtn {
-    background-color: #3e8e41;
+  .messages {
+    height: 500px;
+    padding: 10px 20px 5px 10px;
+    overflow-y: auto;
   }
 </style>
