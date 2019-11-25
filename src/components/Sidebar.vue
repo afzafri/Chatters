@@ -13,6 +13,14 @@
         </div>
       </li>
 
+      <li :class="{'active':$route.name === 'new-chatroom'}">
+        <router-link :to="{ name: 'new-chatroom' }">
+          <i class="material-icons left">add</i> New Chatroom
+        </router-link>
+      </li>
+
+      <li><div class="divider"></div></li>
+
       <li :class="{'active':$route.params.chatroom_id === chatroom.id}" v-for="chatroom in chatrooms" v-bind:key="chatroom.id">
         <router-link :to="{ name: 'view-chatroom', params: { chatroom_id: chatroom.id } }" class="waves-effect">
           {{chatroom.name}} <div class="chip">{{chatroom.created_by}}</div>

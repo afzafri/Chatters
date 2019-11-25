@@ -4,11 +4,7 @@
       <nav>
         <div class="nav-wrapper green">
           <ul class="hide-on-med-and-down">
-            <li :class="{'active':$route.name === 'new-chatroom'}">
-              <router-link :to="{ name: 'new-chatroom' }">
-                <i class="material-icons left">add</i> New Chatroom
-              </router-link>
-            </li>
+            
           </ul>
         </div>
       </nav>
