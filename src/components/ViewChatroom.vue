@@ -7,7 +7,7 @@
            <span class="card-title">
              <b>{{chatroom.name}}</b>
              <div class="dropdown-custom right">
-                 <i class="material-icons">settings</i>
+                 <i class="material-icons" style="cursor: pointer;">settings</i>
                  <div class="dropdown-content-custom">
                    <router-link :to="{ name: 'edit-chatroom' }">Edit <i class="material-icons right">edit</i></router-link>
                    <span>Clear <i class="material-icons right">clear_all</i></span>
