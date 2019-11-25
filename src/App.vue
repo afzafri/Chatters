@@ -4,7 +4,7 @@
       <nav>
         <div class="nav-wrapper green">
           <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <ul class="right">
 
             <li v-if="username" class="dropdown-custom">
               <a class="dropdown-trigger" href="#!">
