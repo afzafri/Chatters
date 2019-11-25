@@ -20,9 +20,26 @@
            <p><i>{{chatroom.about}}</i></p>
            <br>
 
-           <ul class="messages" v-chat-scroll>
-             <li v-for="i in 100" :key="i">{{i}}</li>
-           </ul>
+           <div class="message-wrapper messages" v-chat-scroll>
+             <div class="row" v-for="i in 100" :key="i" style="margin-bottom: 0px !important;">
+
+               <img class="profile-pic" src="https://ui-avatars.com/api/?name=John+Doe" :class="[i%2 === 0 ? 'left' : 'right']"/>
+
+               <div class="chat-bubble" :class="[i%2 === 0 ? 'left' : 'right']">
+
+                   <div class="message">
+                     Hello
+                   </div>
+
+                   <div class="message-detail">
+                       <span>User A</span>,
+                       <span>3:03 pm</span>
+                   </div>
+
+               </div>
+
+             </div>
+           </div>
 
            <div class="row" style="margin-bottom: 0px !important;">
                 <form class="col s12">
@@ -30,7 +47,7 @@
                         <div class="input-field input-group col s12">
                             <input type="text" class="validate" placeholder="Enter your message...">
                             <span class="suffix">
-                                <a class="btn waves-effect waves-light btn-floating"><i class="material-icons">send</i></a>
+                                <a class="btn waves-effect waves-light btn-floating green"><i class="material-icons">send</i></a>
                             </span>
                         </div>
                     </div>
@@ -142,5 +159,91 @@ export default {
 
   .suffix {
       width:1%;
+  }
+
+  /* CHATTING STYLES */
+  img.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: absolute;
+    margin-top: 30px;
+  }
+
+  img.profile-pic.left {
+    left: 10px;
+  }
+
+  img.profile-pic.right {
+    right: 10px;
+  }
+
+  .message {
+    font-size: 14px;
+  }
+
+  .message-detail {
+    white-space: nowrap;
+    font-size: 14px;
+  }
+
+  .bar.item-input-inset .item-input-wrapper input {
+    width: 100% !important;
+  }
+
+  .message-wrapper {
+    position: relative;
+  }
+
+  .message-wrapper:last-child {
+    margin-bottom: 10px;
+  }
+
+  .chat-bubble {
+    border-radius: 5px;
+    display: inline-block;
+    padding: 10px 18px;
+    position: relative;
+    margin: 10px;
+    max-width: 80%;
+  }
+
+  .chat-bubble:before {
+    content: "\00a0";
+    display: block;
+    height: 16px;
+    width: 9px;
+    position: absolute;
+    bottom: -7.5px;
+  }
+
+  .chat-bubble.left {
+    background-color: #e6e5eb;
+    float: left;
+    margin-left: 55px;
+  }
+
+  .chat-bubble.left:before {
+    background-color: #e6e5eb;
+    left: 10px;
+    -webkit-transform: rotate(70deg) skew(5deg);
+  }
+
+  .chat-bubble.right {
+    background-color: #4caf50;
+    color: #fff;
+    float: right;
+    margin-right: 55px;
+  }
+
+  .chat-bubble.right:before {
+    background-color: #4caf50;
+    right: 10px;
+    -webkit-transform: rotate(118deg) skew(-5deg);
+  }
+
+  .chat-bubble.right a.autolinker {
+    color: #fff;
+    font-weight: bold;
   }
 </style>
