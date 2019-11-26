@@ -92,6 +92,38 @@ export default {
       // get user name
       if (localStorage.username) {
         this.username = localStorage.username;
+
+        // get chatroom details
+        var chatroom_id = this.$route.params.chatroom_id;
+        db.collection("chatrooms").doc(chatroom_id).get().then(function(doc) {
+            if (doc.exists) {
+                var data = {
+                  'id': doc.id,
+                  'name': doc.data().name,
+                  'about': doc.data().about,
+                  'created_by': doc.data().created_by,
+                  'timestamp': doc.data().timestamp,
+                }
+
+                current.chatroom = data;
+
+                // get all messages
+                current.getMessages();
+            } else {
+                Swal.fire(
+                  'Chatroom does not exist!',
+                  'error'
+                );
+                current.$router.push({ name: 'home' })
+            }
+        }).catch(function(error) {
+            Swal.fire(
+              'Failed to get Chatroom!',
+              error+'. You can try again later.',
+              'error'
+            );
+            current.$router.push({ name: 'home' })
+        });
       } else {
         Swal.fire(
           'You need to login to start chatting!',
@@ -100,38 +132,6 @@ export default {
         );
         current.$router.push({ name: 'home' });
       }
-
-      // get chatroom details
-      var chatroom_id = this.$route.params.chatroom_id;
-      db.collection("chatrooms").doc(chatroom_id).get().then(function(doc) {
-          if (doc.exists) {
-              var data = {
-                'id': doc.id,
-                'name': doc.data().name,
-                'about': doc.data().about,
-                'created_by': doc.data().created_by,
-                'timestamp': doc.data().timestamp,
-              }
-
-              current.chatroom = data;
-
-              // get all messages
-              current.getMessages();
-          } else {
-              Swal.fire(
-                'Chatroom does not exist!',
-                'error'
-              );
-              current.$router.push({ name: 'home' })
-          }
-      }).catch(function(error) {
-          Swal.fire(
-            'Failed to get Chatroom!',
-            error+'. You can try again later.',
-            'error'
-          );
-          current.$router.push({ name: 'home' })
-      });
     },
     getMessages() {
       db.collection("chatrooms").doc(this.chatroom.id).collection("messages").orderBy("timestamp", "asc")
