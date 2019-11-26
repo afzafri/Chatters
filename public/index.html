@@ -18,6 +18,8 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
 
+    <div id="isDesktop" class="hide-on-med-and-down"></div>
+
     <script
       src="https://code.jquery.com/jquery-3.4.1.min.js"
       integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -40,11 +42,13 @@
 
     $(document).ready(function(){
       $('.sidenav').sidenav();
-      
+
       $('.sidenav')
         .sidenav()
         .on('click tap', 'li a', () => {
-            $('.sidenav').sidenav('close');
+            if(!$('#isDesktop').is(':visible')) {
+              $('.sidenav').sidenav('close');
+            }
         });
     });
     </script>
