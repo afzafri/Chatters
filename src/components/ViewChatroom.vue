@@ -16,7 +16,7 @@
              </div>
            </span>
 
-           <p><i>{{chatroom.about}}</i></p>
+           <p><i>{{chatroom.about}} - by {{chatroom.created_by}}</i></p>
            <br>
 
            <div class="message-wrapper messages" v-chat-scroll="{always: false, smooth: true}">
