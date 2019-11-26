@@ -6,6 +6,7 @@
           <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul class="right">
 
+            <li><a href="#!" v-on:click="aboutApp"><i class="material-icons">info</i></a></li>
             <li v-if="username" class="dropdown-custom">
               <a class="dropdown-trigger" href="#!">
                 {{username}}<i class="material-icons right">arrow_drop_down</i>
@@ -26,14 +27,7 @@
       <router-view/>
     </main>
 
-    <footer class="page-footer transparent hide-on-med-and-down">
-      <div class="footer-copyright transparent">
-        <div class="container">
-        <span class="black-text">&copy; 2019 Afif Zafri</span>
-        <a class="grey-text right" href="https://github.com/afzafri/Chatters">GitHub Project Page</a>
-        </div>
-      </div>
-    </footer>
+    <footer></footer>
   </div>
 </template>
 
@@ -95,6 +89,16 @@
             current.$router.push({ name: 'home' })
           }
         })
+      },
+      aboutApp() {
+        let current = this;
+
+        Swal.fire({
+          title: 'Chatters',
+          html: '&copy; 2019 Afif Zafri',
+          footer: '  <a href="https://github.com/afzafri/Chatters">GitHub Project Page</a>',
+          icon: 'info',
+        });
       }
     },
     mounted() {
@@ -161,7 +165,8 @@
   }
 
   .messages {
-    height: 500px;
+    /* height: 100%; */
+    height: 80vh;
     padding: 10px 20px 5px 10px;
     overflow-y: auto;
   }
