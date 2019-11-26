@@ -55,7 +55,6 @@
             },
             showCancelButton: true,
             confirmButtonText: 'Log In',
-            showLoaderOnConfirm: true,
             allowOutsideClick: false
           }).then((result) => {
             if (result.value) {
