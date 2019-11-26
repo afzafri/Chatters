@@ -1,10 +1,10 @@
 <template lang="html">
   <div class="">
-    <ul id="slide-out" class="sidenav sidenav-fixed">
+    <ul id="slide-out" class="sidenav sidenav-fixed" style="width: 400px">
       <li>
         <div class="user-view">
           <div class="background">
-            <img src="../assets/banner.jpg" width="300px">
+            <img src="../assets/banner.jpg" width="400px">
           </div>
           <router-link :to="{ name: 'home' }">
             <h3 class="white-text center-align">Chatters</h3>

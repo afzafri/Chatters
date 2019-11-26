@@ -23,12 +23,10 @@
     </header>
 
     <main>
-      <div class="container">
-        <router-view/>
-      </div>
+      <router-view/>
     </main>
 
-    <footer class="page-footer transparent">
+    <footer class="page-footer transparent hide-on-med-and-down">
       <div class="footer-copyright transparent">
         <div class="container">
         <span class="black-text">&copy; 2019 Afif Zafri</span>
@@ -109,7 +107,7 @@
 
 <style>
   header, main, footer {
-    padding-left: 300px;
+    padding-left: 400px;
   }
 
   @media only screen and (max-width : 992px) {
