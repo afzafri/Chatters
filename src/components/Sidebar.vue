@@ -4,7 +4,7 @@
       <li>
         <div class="user-view">
           <div class="background">
-            <img src="../assets/banner.jpg" width="400px">
+            <img src="../assets/banner.png" width="400px">
           </div>
           <router-link :to="{ name: 'home' }">
             <h3 class="white-text center-align">Chatters</h3>
