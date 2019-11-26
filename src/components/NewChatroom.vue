@@ -1,34 +1,46 @@
 <template lang="html">
   <div id="new-chatroom">
-    <h3>New Chatroom</h3>
 
-    <div class="row">
-      <form class="col s12" @submit="createChatroom">
-        <div class="row">
-          <div class="input-field col s12">
-            <input type="text" class="validate" v-model="name" name="name" placeholder="Enter Chatroom name">
-            <label class="active">Chatroom Name</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <textarea class="materialize-textarea" v-model="about" name="about" placeholder="Tell people what is this chatroom for?"></textarea>
-            <label class="active">Chatroom About</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <input type="text" class="validate" v-model="created_by" name="created_by" placeholder="Enter your name">
-            <label class="active">Created By</label>
-          </div>
-        </div>
-        <div class="row">
-          <button class="btn waves-effect waves-light" type="submit">
-            Create <i class="material-icons right">save</i>
-          </button>
-        </div>
-      </form>
-    </div>
+    <div class="row" style="margin-bottom: 0px !important;">
+     <div class="col s12">
+       <div class="card">
+         <div class="card-content">
+           <span class="card-title">
+             <b>New Chatroom</b>
+           </span>
+
+           <div class="row" style="margin-bottom: 0px !important;">
+             <form class="col s12" @submit="createChatroom">
+               <div class="row">
+                 <div class="input-field col s12">
+                   <input type="text" class="validate" v-model="name" name="name" placeholder="Enter Chatroom name">
+                   <label class="active">Chatroom Name</label>
+                 </div>
+               </div>
+               <div class="row">
+                 <div class="input-field col s12">
+                   <textarea class="materialize-textarea" v-model="about" name="about" placeholder="Tell people what is this chatroom for?"></textarea>
+                   <label class="active">Chatroom About</label>
+                 </div>
+               </div>
+               <div class="row">
+                 <div class="input-field col s12">
+                   <input type="text" class="validate" v-model="created_by" name="created_by" placeholder="Enter your name">
+                   <label class="active">Created By</label>
+                 </div>
+               </div>
+               <div class="row" style="margin-bottom: 0px !important;">
+                 <button class="btn waves-effect waves-light" type="submit">
+                   Create <i class="material-icons right">save</i>
+                 </button>
+               </div>
+             </form>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+
   </div>
 </template>
 
