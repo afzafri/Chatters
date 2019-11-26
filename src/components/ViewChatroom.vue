@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="view-chatroom">
-    <div class="row">
+    <div class="row" style="margin-bottom: 0px !important;">
      <div class="col s12">
        <div class="card">
          <div class="card-content">
@@ -19,7 +19,7 @@
            <p><i>{{chatroom.about}}</i></p>
            <br>
 
-           <div class="message-wrapper messages" v-chat-scroll>
+           <div class="message-wrapper messages" v-chat-scroll="{always: false, smooth: true}">
              <div class="row" v-for="message in messages" :key="message.id" style="margin-bottom: 0px !important;">
 
                <!-- if message username not equal to current logged in, then bubble on left -->
@@ -167,7 +167,7 @@ export default {
 
       // clear input
       current.new_message = '';
-      
+
       // insert to firestore
       db.collection("chatrooms").doc(this.chatroom.id).collection("messages").add(newMessage)
       .catch(function(error) {
