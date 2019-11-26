@@ -12,7 +12,7 @@
                 {{username}}<i class="material-icons right">arrow_drop_down</i>
               </a>
               <div class="dropdown-content-custom">
-                <span v-on:click="logOut">Log Out</span>
+                <span v-on:click="logOut">Log Out<i class="material-icons left">exit_to_app</i></span>
               </div>
             </li>
             <li v-else><a href="#" v-on:click="logIn">Login</a></li>
@@ -147,6 +147,7 @@
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    right: 0;
   }
 
   /* Links inside the dropdown-custom */

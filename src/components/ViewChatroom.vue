@@ -9,9 +9,9 @@
              <div class="dropdown-custom right">
                  <i class="material-icons" style="cursor: pointer;">settings</i>
                  <div class="dropdown-content-custom">
-                   <router-link :to="{ name: 'edit-chatroom' }">Edit <i class="material-icons right">edit</i></router-link>
-                   <span v-on:click="clearConversations">Clear <i class="material-icons right">clear_all</i></span>
-                   <span class="red-text" v-on:click="deleteChatroom">Delete <i class="material-icons right">delete</i></span>
+                   <router-link :to="{ name: 'edit-chatroom' }">Edit<i class="material-icons left">edit</i></router-link>
+                   <span v-on:click="clearConversations">Clear<i class="material-icons left">clear_all</i></span>
+                   <span class="red-text" v-on:click="deleteChatroom">Delete<i class="material-icons left">delete</i></span>
                  </div>
              </div>
            </span>
