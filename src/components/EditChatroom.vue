@@ -6,6 +6,7 @@
          <div class="card-content">
            <span class="card-title">
              <b>Edit Chatroom</b>
+             <span @click="$router.go(-1)" class="right" style="cursor: pointer;"><i class="material-icons right">arrow_back</i></span> 
            </span>
 
            <div class="row" style="margin-bottom: 0px !important;">
