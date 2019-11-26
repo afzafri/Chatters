@@ -67,6 +67,7 @@
 <script>
 import db from './firebaseInit'
 import Swal from 'sweetalert2'
+import firebase from 'firebase'
 
 export default {
   name: 'view-chatroom',
@@ -102,7 +103,7 @@ export default {
                   'name': doc.data().name,
                   'about': doc.data().about,
                   'created_by': doc.data().created_by,
-                  'timestamp': doc.data().timestamp,
+                  'timestamp': doc.data().timestamp.toDate(),
                 }
 
                 current.chatroom = data;
@@ -142,7 +143,7 @@ export default {
               'id': doc.id,
               'message': doc.data().message,
               'username': doc.data().username,
-              'timestamp': doc.data().timestamp,
+              'timestamp': doc.data().timestamp.toDate(),
             }
 
             messagesNew.push(data);
@@ -162,7 +163,7 @@ export default {
       var newMessage = {
         'message': this.new_message,
         'username': this.username,
-        'timestamp': new Date().getTime(),
+        'timestamp': firebase.firestore.Timestamp.fromDate(new Date()),
       }
 
       // clear input

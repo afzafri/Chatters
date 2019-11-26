@@ -47,6 +47,8 @@
 <script>
 import db from './firebaseInit'
 import Swal from 'sweetalert2'
+import firebase from 'firebase'
+
 export default {
   name: 'new-chatroom',
   data () {
@@ -65,7 +67,7 @@ export default {
           'name': this.name,
           'about': this.about,
           'created_by': this.created_by,
-          'timestamp': new Date().getTime(),
+          'timestamp': firebase.firestore.Timestamp.fromDate(new Date()),
         }
 
         // insert to firestore

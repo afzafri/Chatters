@@ -54,7 +54,7 @@ export default {
             'name': doc.data().name,
             'about': doc.data().about,
             'created_by': doc.data().created_by,
-            'timestamp': doc.data().timestamp,
+            'timestamp': doc.data().timestamp.toDate(),
           }
 
           chatroomsNew.push(data);
