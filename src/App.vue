@@ -68,7 +68,7 @@
                 'success'
               );
 
-              this.$router.push({ name: 'home' });
+              // this.$router.push({ name: 'home' });
             }
           })
       },
@@ -86,7 +86,10 @@
           if (result.value) {
             localStorage.removeItem('username');
             this.username = "";
-            current.$router.push({ name: 'home' })
+
+            if(current.$route.name !== 'home') {
+              current.$router.push({ name: 'home' })
+            }
           }
         })
       },

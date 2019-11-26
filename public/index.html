@@ -28,11 +28,6 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
 
     <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function() {
-      // M.AutoInit();
-      var elems = document.querySelectorAll('.sidenav');
-      var instances = M.Sidenav.init(elems);
-    });
 
     // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
     // var collapsibleElem = document.querySelector('.collapsible');
@@ -41,6 +36,11 @@
     // Or with jQuery
 
     $(document).ready(function(){
+
+      // $.each($('.dropdown-trigger'), function(index, value) {
+      //   $(value).dropdown({ hover: false, constrainWidth: false });
+      // });
+
       $('.sidenav').sidenav();
 
       $('.sidenav')
