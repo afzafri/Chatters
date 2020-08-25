@@ -5,6 +5,7 @@ import 'materialize-css/dist/css/materialize.css'
 import 'materialize-css'
 import VueChatScroll from 'vue-chat-scroll'
 import moment from 'moment'
+import './registerServiceWorker'
 
 Vue.use(VueChatScroll)
 Vue.prototype.moment = moment
